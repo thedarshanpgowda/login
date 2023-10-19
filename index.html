@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log-in</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="box1">
+            <div class="content">
+                <div class="main_content">
+                    <div class="heading">
+                        Registration Form
+                    </div>
+                    <form action="">
+                        <div class="checkbox_block">
+                            <div class="checkboxheader">
+                                Enter a valid type
+                            </div>
+                            <div class="select_checkbox">
+                                <fieldset>
+                                    <div class="checkbox">
+                                        <input type="checkbox" class="checkboxes" value="core_member" name="core_member"
+                                            id="core_member" required>
+                                        <label for="core_member">
+                                            <img src="core member.svg" alt="">
+                                        </label>
+                                    </div>
+                                    <legend>Core-Member</legend>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="checkbox">
+                                        <input type="checkbox" class="checkboxes" value="students" name="students"
+                                            id="students">
+                                        <label for="students">
+                                            <img src="studens.svg" alt="">
+                                        </label>
+                                    </div>
+                                    <legend>Core-Member</legend>
+                                </fieldset>
+
+                            </div>
+
+                        </div>
+                        <div class="login_activity">
+                            <div class="main_login_notifyf">
+                                <span id="inner"> Hello! Welcome to the new arena of Tech Geeks. </span>
+                            </div>
+                            <div class="main_login_services">
+                                <div class="input_for_name inpt">
+                                    <img src="https://cdn-icons-png.flaticon.com/128/1077/1077063.png" alt="">
+                                    <input type="text" name="name" class="checkboxes" id="name" placeholder="Name">
+                                </div>
+                                <div class="input_for_pswd inpt">
+                                    <img src="https://cdn-icons-png.flaticon.com/128/2889/2889676.png" alt="">
+                                    <input type="password" name="password" class="checkboxes" id="password"
+                                        placeholder="password">
+                                    <img src="https://cdn-icons-png.flaticon.com/128/4855/4855030.png" alt="">
+                                </div>
+                                <div id="submit">
+                                    <button>Submit</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class="box2"></div>
+    </div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            var core_member = document.getElementById('core_member');
+            var students = document.getElementById('students');
+            var submit = document.getElementById('submit');
+            var notify = document.getElementById('inner');
+            core_member_list = {
+                "darshan": "4mc21cs041",
+                "mithungowda": "4mc21ee042",
+                "deekshith": "4mc21cs045",
+                "dhanushree": "4mc21cs047",
+            };
+
+// =------------------checkbox ------------------------
+            console.log(core_member_list);
+            function updateMessage() {
+                if (core_member.checked && students.checked) {
+                    notify.innerHTML = "Hey <b>Hero</b>, Select either one of the above two mentioned.";
+                } else if (core_member.checked) {
+                    notify.innerHTML = "Hello <b>Core-Member</b>, Warm Greetings, Have a great evening.";
+                } else if (students.checked) {
+                    notify.innerHTML = "Hello <b>Student</b>, Warm Greetings, Have a great evening.";
+                } else {
+                    notify.innerHTML = "Hello! Welcome to the new arena of Tech Geeks.";
+                }
+            }
+
+            core_member.addEventListener('change', updateMessage);
+            students.addEventListener('change', updateMessage);
+
+
+            //--------------------------------- login activity ----------------------------
+            const submitButton = document.getElementById('submit');
+            const myName = document.getElementById('name');
+            const myPassword = document.getElementById('password');
+
+            submitButton.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                const enteredName = myName.value.toLowerCase();
+                const enteredPassword = myPassword.value;
+
+                if (core_member_list.hasOwnProperty(enteredName)) {
+                    const storedPassword = core_member_list[enteredName];
+
+                    if (enteredPassword == storedPassword) {
+                        console.log('Success');
+                        window.location = 'www.google.com'
+                    } else {
+                        console.log("hello");
+                        notify.innerHTML = 'Password incorrect';
+                        notify.style.color = 'red';
+                        notify.style.textAlign = 'center';
+                        notify.style.left = '-20%';
+                    }
+                } else {
+                    notify.innerHTML = 'User not found';
+                }
+            });
+
+        })
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
